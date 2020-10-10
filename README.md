@@ -1,5 +1,5 @@
 # ykq-vue-pc-template-bk
-宜块钱 pc 端通用项目模板
+宜块钱 pc 端
 
 ## Project setup
 ```
