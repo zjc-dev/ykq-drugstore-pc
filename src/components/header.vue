@@ -103,7 +103,6 @@ export default {
   line-height: 60px;
 }
 .demo-autocomplete {
-  display: inline-block;
   float: left;
   padding-left: 0px;
 }

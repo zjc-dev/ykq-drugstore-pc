@@ -75,8 +75,7 @@ export default {
 
 <style lang="less" scoped>
 /* 主题部分 */
-.main_box {
-}
+
 /* 设置主题左上角提示信息 */
 .main_title {
   line-height: 20px;
@@ -160,8 +159,8 @@ body > .el-container {
   width: 700px;
 }
 .res a {
-  float: left;
   display: inline-block;
+  text-align: center;
   width: 80px;
   height: 30px;
   line-height: 30px;
