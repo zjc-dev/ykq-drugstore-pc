@@ -15,7 +15,8 @@ export default [
     name: "home",
     component: homeRouter,
     meta: {
-      title: "home页面"
+      title: "home页面",
+      keepAlive: true
     }
   }
 ];

@@ -16,6 +16,5 @@ import loginRouter from "./login";
 import registerRouter from "./register";
 import storeManListRouter from "./storeManList";
 
-
 // 导出公共路由
 export default [...HomeRouter, ...ResourceRouter, ...ErroRouter, ...baiduRouter1, ...messRouter, ...loginRouter, ...registerRouter, ...storeManListRouter];

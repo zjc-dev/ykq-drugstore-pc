@@ -5,6 +5,7 @@ export default [{
     name: "adminManList",
     component: storeManListRouter,
     meta: {
-        title: "门店管理列表"
+        title: "门店管理列表",
+        keepAlive: true
     }
 }]

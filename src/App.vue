@@ -1,15 +1,20 @@
 <template>
   <div id="app">
-    <div class="menu">左侧菜单</div>
-    <div class="header">顶部header</div>
+    <header-router v-if="$route.meta.keepAlive"></header-router>
+    <aside-left v-if="$route.meta.keepAlive"></aside-left>
     <router-view />
   </div>
 </template>
 
 <script>
+import headerRouter from "@/components/header";
+import asideLeft from "@/components/asideLeft";
 export default {
   name: "App",
-  components: {},
+  components: {
+    headerRouter,
+    asideLeft,
+  },
 };
 </script>
 
@@ -27,5 +32,14 @@ a {
 body {
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
     Microsoft YaHei, Arial, sans-serif;
+}
+.main_box {
+  overflow: auto;
+  height: calc(100vh - 60px);
+  width: calc(100vw - 200px);
+  position: absolute;
+  left: 200px;
+  top: 60px;
+  padding: 0 20px;
 }
 </style>
