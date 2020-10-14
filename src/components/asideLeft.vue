@@ -16,10 +16,11 @@
             @open="handleOpen"
             @close="handleClose"
             text-color="#fff"
+            :router="true"
             active-text-color="#ffd04b"
             :unique-opened="true"
           >
-            <el-menu-item index="1">
+            <el-menu-item index="/home">
               <i class="el-icon-menu"></i>
               <span slot="title">工作台</span>
             </el-menu-item>
@@ -38,9 +39,7 @@
                 <i class="el-icon-location"></i>
                 <span>商品</span>
               </template>
-              <el-menu-item index="3-1"
-                ><a href="/home">商品管理</a></el-menu-item
-              >
+              <el-menu-item index="/home">商品管理</el-menu-item>
               <el-menu-item index="3-2">商品申请记录</el-menu-item>
               <el-menu-item index="3-3">商品批量导入</el-menu-item>
               <el-menu-item index="3-4">商品分类</el-menu-item>
@@ -62,6 +61,15 @@
                 <span>店铺设置</span>
               </template>
               <el-menu-item index="4-1">店铺基本信息</el-menu-item>
+            </el-submenu>
+            <el-submenu index="5">
+              <template slot="title">
+                <i class="el-icon-location"></i>
+                <span>财务管理</span>
+              </template>
+              <el-menu-item index="/accountfunds">账户资金</el-menu-item>
+              <el-menu-item index="4-1">账单记录</el-menu-item>
+              <el-menu-item index="4-1">提现记录</el-menu-item>
             </el-submenu>
           </el-menu>
         </el-row>
