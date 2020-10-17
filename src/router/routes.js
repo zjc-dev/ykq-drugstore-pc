@@ -16,6 +16,7 @@ import loginRouter from "./login";
 import registerRouter from "./register";
 import storeManListRouter from "./storeManList";
 import accountfundsRouter from "./accountfunds";
+import withdrawRouter from "./withdraw";
 
 // 导出公共路由
-export default [...accountfundsRouter, ...HomeRouter, ...ResourceRouter, ...ErroRouter, ...baiduRouter1, ...messRouter, ...loginRouter, ...registerRouter, ...storeManListRouter];
+export default [...withdrawRouter, ...accountfundsRouter, ...HomeRouter, ...ResourceRouter, ...ErroRouter, ...baiduRouter1, ...messRouter, ...loginRouter, ...registerRouter, ...storeManListRouter];

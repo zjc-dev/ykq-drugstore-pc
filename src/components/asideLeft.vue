@@ -12,7 +12,6 @@
           <el-menu
             :collapse="isCollapse"
             class="el-menu-vertical-demo"
-            default-active="1"
             @open="handleOpen"
             @close="handleClose"
             text-color="#fff"
@@ -20,6 +19,7 @@
             active-text-color="#ffd04b"
             :unique-opened="true"
           >
+            <!-- <router-link to="/first"> -->
             <el-menu-item index="/home">
               <i class="el-icon-menu"></i>
               <span slot="title">工作台</span>
@@ -62,7 +62,7 @@
               </template>
               <el-menu-item index="4-1">店铺基本信息</el-menu-item>
             </el-submenu>
-            <el-submenu index="5">
+            <el-submenu index="6">
               <template slot="title">
                 <i class="el-icon-location"></i>
                 <span>财务管理</span>
@@ -71,6 +71,7 @@
               <el-menu-item index="4-1">账单记录</el-menu-item>
               <el-menu-item index="4-1">提现记录</el-menu-item>
             </el-submenu>
+            <!-- </router-link> -->
           </el-menu>
         </el-row>
         <div class="menu-footer" @click="isshow">
@@ -92,6 +93,7 @@ export default {
       isCollapse: false,
       ykq: ykqIcon,
       xzsq: xzsqIcon,
+      items: [{}, {}],
     };
   },
   methods: {
@@ -191,7 +193,7 @@ export default {
 .menu-footer {
   position: fixed;
   bottom: 0px;
-  padding-left: 20px;
+  padding-left: 10px;
   width: 200px;
   height: 50px;
   font-size: 14px;
@@ -201,9 +203,8 @@ export default {
   color: hsla(0, 0%, 100%, 0.6);
 }
 .menu-footer img {
-  width: 30px;
-  height: 12px;
+  width: 42px;
+  height: 13px;
   vertical-align: middle;
-  margin-right: 10px;
 }
 </style>

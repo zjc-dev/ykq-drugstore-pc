@@ -11,7 +11,7 @@
             <p class="num_balance">余额 &nbsp; (元)</p>
             <div>
               <h1>20.030.36</h1>
-              <span>提现</span>
+              <span> <router-link :to="'withdraw'">提现</router-link></span>
             </div>
             <p class="history">提现记录</p>
           </div>
@@ -64,7 +64,8 @@
           </div>
         </div>
         <div class="report">
-          <ve-line :data="chartData"></ve-line>
+          <!-- <ve-line :data="chartData"></ve-line> -->
+          <ve-histogram :data="chartData" width="1000px"></ve-histogram>
         </div>
       </div>
     </div>
@@ -72,7 +73,8 @@
 </template>
 
 <script>
-import VeLine from "v-charts/lib/line.common";
+// import VeLine from "v-charts/lib/line.common";
+import veHistogram from "v-charts/lib/histogram.common";
 
 export default {
   data() {
@@ -83,17 +85,17 @@ export default {
         columns: ["日期", "销售量"],
         rows: [
           { 日期: "1月1日", 销售量: 123 },
-          { 日期: "1月2日", 销售量: 1223 },
-          { 日期: "1月3日", 销售量: 2123 },
-          { 日期: "1月4日", 销售量: 4123 },
-          { 日期: "1月5日", 销售量: 3123 },
-          { 日期: "1月6日", 销售量: 7123 },
+          { 日期: "1月2日", 销售量: 200 },
+          { 日期: "1月3日", 销售量: 300 },
+          { 日期: "1月4日", 销售量: 400 },
+          { 日期: "1月5日", 销售量: 800 },
+          { 日期: "1月6日", 销售量: 1000 },
         ],
       },
     };
   },
   components: {
-    VeLine,
+    veHistogram,
   },
   methods: {
     change(index) {
