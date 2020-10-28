@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <header-router v-if="$route.meta.keepAlive"></header-router>
+    <header-router
+      v-if="$route.meta.keepAlive"
+      :msg="msg"
+      @func="giveatt"
+    ></header-router>
     <aside-left v-if="$route.meta.keepAlive"></aside-left>
     <router-view />
   </div>
@@ -11,6 +15,19 @@ import headerRouter from "@/components/header";
 import asideLeft from "@/components/asideLeft";
 export default {
   name: "App",
+  data() {
+    return {
+      msg: "父亲的msg",
+      val: "",
+    };
+  },
+  methods: {
+    giveatt(data) {
+      console.log("调用了复函数" + data);
+      this.val = data;
+      console.log(this.val);
+    },
+  },
   components: {
     headerRouter,
     asideLeft,

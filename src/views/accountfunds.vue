@@ -11,7 +11,7 @@
             <p class="num_balance">余额 &nbsp; (元)</p>
             <div>
               <h1>20.030.36</h1>
-              <span> <router-link :to="'withdraw'">提现</router-link></span>
+              <span> <router-link :to="'/withdraw'">提现</router-link></span>
             </div>
             <p class="history">提现记录</p>
           </div>

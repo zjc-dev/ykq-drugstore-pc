@@ -14,7 +14,8 @@
       <!-- 输入框结束 -->
       <!-- 提示文字start -->
       <span>您好，欢迎使用宜块钱商家平台管理系统!</span>
-
+      <button @click="sonmethods">点击</button>
+      <button @click="chat">兄弟组件通信</button>
       <el-dropdown trigger="click">
         <span class="el-dropdown-link">
           17621756768<i class="el-icon-arrow-down el-icon--right"></i>
@@ -36,9 +37,11 @@ import mdglIcon from "../assets/mdgl.png";
 import zhglIcon from "../assets/zhgl.png";
 import tcdlIcom from "../assets/tcdl.png";
 import ykqIcon from "../assets/ykq.png";
+import bus from "../router/bus";
 
 export default {
   name: "header-router",
+  props: ["msg"],
   data() {
     return {
       restaurants: [],
@@ -46,10 +49,17 @@ export default {
       mdgl: mdglIcon,
       tcdl: tcdlIcom,
       zhgl: zhglIcon,
+      v: 10,
     };
   },
 
   methods: {
+    chat() {
+      bus.$emit("on", this.v);
+    },
+    sonmethods() {
+      this.$emit("func", this.v);
+    },
     querySearch(queryString, cb) {
       var restaurants = this.restaurants;
       var results = queryString

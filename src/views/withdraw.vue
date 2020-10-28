@@ -5,15 +5,15 @@
       <span class="funds">账户资金 &nbsp;/</span>
       <span class="span_withdraw">账户提现</span>
     </div>
-    <div class="main_content" v-if="isok">
+    <div class="main_content" v-if="is_succ_withdrawal">
       <p class="available_cash_amount">
         可提现金额<span style="color: #f56c6c">{{ money }}</span
         >元
       </p>
-      <div class="bank_num">
-        <img :src="gsbank" alt="" />
-        <span class="bank_card">招商银行储蓄卡</span>
-        <span class="card_num">(5419)</span>
+      <div class="bank_num" v-for="(item, index) in banklist" :key="index">
+        <img :src="item.bankimg" />
+        <span class="bank_card">{{ item.typeofrcard }}</span>
+        <span class="card_num">{{ item.bank_card_number }}</span>
       </div>
       <p class="cash_num">转出金额</p>
       <div class="money_number">
@@ -71,7 +71,7 @@
         </div>
       </el-dialog>
     </div>
-    <div class="main_content" v-if="!isok">
+    <div class="main_content" v-if="!is_succ_withdrawal">
       <div class="cash_cont">
         <div class="box"></div>
         <p>提现成功</p>
@@ -83,27 +83,102 @@
 </template>
 <script>
 import gsbankIcon from "../assets/gs_bank.jpg";
+import jsbankIcon from "../assets/js_bank.jpg";
+import zxbankIcon from "../assets/zx_bank.jpg";
 export default {
   data() {
     return {
-      isok: true,
+      is_succ_withdrawal: true,
       money: "240",
       gsbank: gsbankIcon,
+      jsbank: jsbankIcon,
+      zxbank: zxbankIcon,
       dialogFormVisible: false,
       pass_form: {
         password: "",
         type: [],
         resource: "",
       },
+      banklist: [
+        {
+          bankimg: gsbankIcon,
+          typeofrcard: "招商银行储蓄卡",
+          bank_card_number: "5716",
+        },
+        {
+          bankimg: jsbankIcon,
+          typeofrcard: "建设银行储蓄卡",
+          bank_card_number: 6716,
+        },
+        {
+          bankimg: zxbankIcon,
+          bank_card_number: 7716,
+          typeofrcard: "中信银行储蓄卡",
+        },
+      ],
     };
   },
   methods: {
     sumit_cash: function () {
       this.dialogFormVisible = false;
-      this.isok = false;
+      this.is_succ_withdrawal = false;
       console.log(this.pass_form.password);
     },
   },
+  // beforeCreate: function () {
+  //   console.group("beforeCreate 创建前状态===============》");
+  //   console.log("%c%s", "color:red", "el     : " + this.$el); //undefined
+  //   console.log("%c%s", "color:red", "data   : " + this.$data); //undefined
+  //   console.log("%c%s", "color:red", "message: " + this.money);
+  // },
+  // created: function () {
+  //   console.group("created 创建完毕状态===============》");
+  //   console.log("%c%s", "color:red", "el     : " + this.$el); //undefined
+  //   console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化
+  //   console.log("%c%s", "color:red", "message: " + this.money); //已被初始化
+  // },
+  // beforeMount: function () {
+  //   console.group("beforeMount 挂载前状态===============》");
+  //   console.log("%c%s", "color:red", "el     : " + this.$el); //已被初始化
+  //   console.log(this.$el);
+  //   console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化
+  //   console.log("%c%s", "color:red", "message: " + this.money); //已被初始化
+  // },
+  // mounted: function () {
+  //   console.group("mounted 挂载结束状态===============》");
+  //   console.log("%c%s", "color:red", "el     : " + this.$el); //已被初始化
+  //   console.log(this.$el);
+  //   console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化
+  //   console.log("%c%s", "color:red", "message: " + this.money); //已被初始化
+  // },
+  // beforeUpdate: function () {
+  //   console.group("beforeUpdate 更新前状态===============》");
+  //   console.log("%c%s", "color:red", "el     : " + this.$el);
+  //   console.log(this.$el);
+  //   console.log("%c%s", "color:red", "data   : " + this.$data);
+  //   console.log("%c%s", "color:red", "message: " + this.money);
+  // },
+  // updated: function () {
+  //   console.group("updated 更新完成状态===============》");
+  //   console.log("%c%s", "color:red", "el     : " + this.$el);
+  //   console.log(this.$el);
+  //   console.log("%c%s", "color:red", "data   : " + this.$data);
+  //   console.log("%c%s", "color:red", "message: " + this.money);
+  // },
+  // beforeDestroy: function () {
+  //   console.group("beforeDestroy 销毁前状态===============》");
+  //   console.log("%c%s", "color:red", "el     : " + this.$el);
+  //   console.log(this.$el);
+  //   console.log("%c%s", "color:red", "data   : " + this.$data);
+  //   console.log("%c%s", "color:red", "message: " + this.money);
+  // },
+  // destroyed: function () {
+  //   console.group("destroyed 销毁完成状态===============》");
+  //   console.log("%c%s", "color:red", "el     : " + this.$el);
+  //   console.log(this.$el);
+  //   console.log("%c%s", "color:red", "data   : " + this.$data);
+  //   console.log("%c%s", "color:red", "message: " + this.money);
+  // },
 };
 </script>
 <style scoped>
@@ -131,9 +206,9 @@ export default {
 .available_cash_amount {
   padding-left: 25px;
   font-size: 14px;
+  margin-bottom: 10px;
 }
 .bank_num {
-  margin-top: 10px;
   height: 50px;
   line-height: 50px;
   padding-left: 25px;

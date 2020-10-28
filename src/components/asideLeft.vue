@@ -71,6 +71,28 @@
               <el-menu-item index="4-1">账单记录</el-menu-item>
               <el-menu-item index="4-1">提现记录</el-menu-item>
             </el-submenu>
+            <template v-for="item in items">
+              <el-submenu
+                v-if="item.children"
+                :index="item.path"
+                :key="item.path"
+              >
+                <template slot="title">
+                  <i :class="'el-icon-' + item.icon" />
+                  <span slot="title">{{ item.name }}</span>
+                </template>
+                <router-link
+                  v-for="(citem, cindex) in item.children"
+                  :to="citem.path"
+                  :key="cindex"
+                >
+                  <el-menu-item :index="citem.path">
+                    <span slot="title">{{ citem.name }}</span>
+                  </el-menu-item>
+                </router-link>
+              </el-submenu>
+            </template>
+
             <!-- </router-link> -->
           </el-menu>
         </el-row>
@@ -86,14 +108,39 @@
 <script>
 import ykqIcon from "../assets/ykq.png";
 import xzsqIcon from "../assets/xzsq.png";
+import bus from "../router/bus";
 export default {
   name: "aside-left",
   data() {
     return {
       isCollapse: false,
       ykq: ykqIcon,
+      v1: "",
       xzsq: xzsqIcon,
-      items: [{}, {}],
+      items: [
+        {
+          icon: "location",
+          name: "用户管理",
+          path: "1",
+          children: [
+            { path: "accountfunds", name: "商品管理1" },
+            { path: "accountfunds", name: "商品管理2" },
+            { path: "accountfunds", name: "商品管理4" },
+            { path: "home", name: "商品管理3" },
+          ],
+        },
+        {
+          icon: "location",
+          name: "财务管理",
+          path: "2",
+          children: [
+            { path: "home", name: "账单资金" },
+            { path: "home", name: "账单记录" },
+            { path: "home", name: "商品管理4" },
+            { path: "home", name: "商品管理3" },
+          ],
+        },
+      ],
     };
   },
   methods: {
@@ -108,6 +155,9 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath);
     },
+  },
+  mounted: function () {
+    bus.$on("on", (msg) => ((this.v1 = msg), console.log(this.v1)));
   },
 };
 </script>

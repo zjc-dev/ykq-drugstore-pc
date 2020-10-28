@@ -111,6 +111,7 @@ class Request {
   create() {
     return axios.create({ timeout: 30000 });
   }
+
   // 请求实例
   request(options) {
     let instance = this.create();

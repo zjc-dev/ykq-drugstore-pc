@@ -42,7 +42,7 @@
           </el-select>
         </el-form-item>
         <div class="btn_search">
-          <button class="sea" type="primary" @click="submitForm('ruleForm')">
+          <button class="sea" type="primary" @click.prevent="filterDataList">
             查询
           </button>
           <button class="reset" @click="resetForm('ruleForm')">重置</button>
@@ -154,11 +154,13 @@
       </div>
       <div class="block">
         <el-pagination
+          @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
-          :current-page="currentPage"
-          :page-size="6"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="400"
+          :current-page="paginations.page_index"
+          :page-size="paginations.page_size"
+          :page-sizes="paginations.page_sizes"
+          :layout="paginations.layout"
+          :total="paginations.total"
         >
         </el-pagination>
       </div>
@@ -169,8 +171,14 @@
 export default {
   data() {
     return {
+      paginations: {
+        page_index: 1, //当前页数
+        total: 100, //总数
+        page_size: 5, //每页显示多少条
+        page_sizes: [5, 10, 15, 20], //每页显示多少条
+        layout: "total, sizes, prev, pager, next, jumper",
+      },
       num: 1,
-      currentPage: 1,
       form: {
         name: "",
         region: "",
@@ -273,8 +281,18 @@ export default {
 
       return map[st] || "";
     },
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
+    filterDataList() {
+      console.log(this.form.name);
+    },
+    handleSizeChange(page_size) {
+      this.paginations.page_size = page_size;
+      this.tableData = this.tableData.filter((item, index) => {
+        return index < this.paginations.page_size;
+      });
+    },
+
+    handleCurrentChange(page) {
+      console.log(`当前页: ${page}`);
     },
     handleEdit(index, row) {
       console.log(index, row);
