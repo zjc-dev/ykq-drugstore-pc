@@ -2,7 +2,7 @@
   <div class="wrap">
     <div class="box">
       {{ txt }}
-      <button @click="modTxt('修改后的vuex数据')">点我改变vuex中数据</button>
+      <button @click="modTxt('修改后的vuex数据')">点我改变vuex中数据1</button>
     </div>
   </div>
 </template>
@@ -15,15 +15,15 @@ export default {
     return {};
   },
   computed: {
-    ...mapState("examStore", ["txt"])
+    ...mapState("examStore", ["txt"]),
   },
   methods: {
-    ...mapMutations("examStore", ["modTxt"])
+    ...mapMutations("examStore", ["modTxt"]),
   },
   created() {
     examPostRequest();
     examGetRequest();
-  }
+  },
 };
 </script>
 <style scoped lang="scss">
