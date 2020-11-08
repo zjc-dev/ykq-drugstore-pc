@@ -28,7 +28,7 @@
               href="javascript:;"
               @mouseenter="mouseOver"
               @mouseleave="mouseLeave"
-              >更多{{ seen }}</a
+              >更多1{{ seen }}</a
             >
           </li>
         </ul>
@@ -92,7 +92,7 @@
             <a href="#">About Baidu</a>
           </li>
           <li>
-            <a href="#">百度营销</a>
+            <a href="#">百度营销1</a>
           </li>
           <li>
             <a href="#">使用百度前必读</a>
