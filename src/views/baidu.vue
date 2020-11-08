@@ -86,7 +86,7 @@
             <a href="#">设为首页</a>
           </li>
           <li>
-            <a href="#">关于百度</a>
+            <a href="#">关于百度1</a>
           </li>
           <li>
             <a href="#">About Baidu</a>
